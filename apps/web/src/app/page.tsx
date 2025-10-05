@@ -28,7 +28,7 @@ export default function App() {
 
   if (!mounted) return null;
 
-  const handleRedirect = () => router.push(`/canvas/${canvasId}`);
+  const handleRedirect = () => router.push(`/dashboard`);
 
   return (
     <div className="min-h-screen transition-colors duration-300 bg-background text-foreground">
