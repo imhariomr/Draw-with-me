@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { PenTool } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -14,18 +13,23 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { DialogClose } from "@radix-ui/react-dialog";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { Description, DialogClose } from "@radix-ui/react-dialog";
 import { useForm, SubmitHandler } from "react-hook-form";
+import axios from "axios";
+import { environment } from "environment";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
+import BarLoader from "./bar-loader";
+import { useState } from "react";
 
 type FormValue = {
   canvasName: string;
+  description: string
 };
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
-
+  const [loader, setLoader] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -34,11 +38,21 @@ export default function Navbar() {
   } = useForm<FormValue>({ mode: "onTouched" });
 
   const onSubmit = async (data: FormValue) => {
-    console.log("data", data);
-    const payload = {
-      canvas_name : data?.canvasName?.trim()
+    setLoader(true);
+    try {
+      const payload = {
+        name: data?.canvasName?.trim(),
+        description: data?.description,
+      };
+      const response = await axios.post(`${environment?.NEXT_PUBLIC_API_URL}/create-room`,payload);
+      if (response) {
+        setLoader(false);
+        toast.success(response?.data?.message + ' 🥂');
+      }
+    } catch (err:any) {
+      setLoader(false);
+      toast.error(err?.response?.data?.message);
     }
-    console.log("payload",payload);
   };
   return (
     <>
@@ -105,8 +119,7 @@ export default function Navbar() {
                     <DialogHeader>
                       <DialogTitle>Create a Room</DialogTitle>
                       <DialogDescription>
-                        This form lets you create a room where you can play with
-                        your own canvas.
+                        Create Your Own Canvas 🎉
                       </DialogDescription>
                     </DialogHeader>
 
@@ -144,6 +157,33 @@ export default function Navbar() {
                         )}
                       </div>
 
+                      <div>
+                        <label
+                          htmlFor="description"
+                          className="block text-sm font-medium mb-1 text-foreground"
+                        >
+                          Description
+                        </label>
+                        <Textarea
+                          id="description"
+                          {...register("description", {
+                            required: "Description is required",
+                            maxLength: {
+                              value: 100,
+                              message:
+                                "Description must be less than 100 words",
+                            },
+                            }
+                          )}
+                          className="w-full rounded-md border border-border px-3 py-2 bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                        />
+                        {errors.description && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.description.message as string}
+                          </p>
+                        )}
+                      </div>
+
                       <DialogFooter>
                         <DialogClose asChild>
                           <Button variant="outline" type="button">
@@ -174,6 +214,7 @@ export default function Navbar() {
           </div>
         </div>
       </header>
+      {loader && <BarLoader />}
     </>
   );
 }

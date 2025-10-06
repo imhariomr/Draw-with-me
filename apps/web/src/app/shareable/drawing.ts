@@ -62,7 +62,8 @@ export class drawing{
             this.ctx.beginPath();
             this.ctx.strokeStyle = 'white';
             this.ctx.moveTo(this.startOffSetX, this.startOffSetY);
-            this.ctx.lineTo(this.actualEndOffSetX , this.actualEndOffSetY);
+            // this.ctx.lineTo(this.actualEndOffSetX , this.actualEndOffSetY);
+            this.ctx.lineTo(this.startOffSetX + this.endOffSetX, this.startOffSetY + this.endOffSetY);
             this.ctx.stroke();
         }
     }
