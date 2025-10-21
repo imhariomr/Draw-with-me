@@ -1,7 +1,7 @@
 "use client";
-import { shapes } from "@/app/constants/shapes.constant";
-import { drawing } from "@/app/shareable/drawing";
-import ToolBar from "@/app/shareable/tool-bar";
+import { shapes } from "../../constants/shapes.constant";
+import { drawing } from "../../shareable/drawing";
+import ToolBar from "../../shareable/tool-bar";
 import { useAuth } from "@clerk/nextjs";
 import axios from "axios";
 import { environment } from "environment";
