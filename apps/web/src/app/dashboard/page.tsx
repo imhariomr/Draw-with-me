@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../shareable/navbar";
 import Card from "@/components/ui/card";
-import { environment } from "environment";
+// import { environment } from "environment";
 import BarLoader from "../shareable/bar-loader";
 
 export default function Dashboard() {
@@ -12,7 +12,7 @@ export default function Dashboard() {
   const getRoomdata = async () => {
     try {
       setLoader(true);
-      const response = await axios.get(`${environment.NEXT_PUBLIC_API_URL}/list/canvas`);
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/list/canvas`);
       setRoomdata(response?.data?.data || []);
     } catch (error) {
       console.error("Error fetching rooms:", error);

@@ -4,7 +4,7 @@ import { drawing } from "../../shareable/drawing";
 import ToolBar from "../../shareable/tool-bar";
 import { useAuth } from "@clerk/nextjs";
 import axios from "axios";
-import { environment } from "environment";
+// import { environment } from "environment";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -22,7 +22,7 @@ export default function Canvas() {
   const setUpWebSocketConnection = async () => {
     const token: any = await getToken();
     const ws = new WebSocket(
-      `${environment?.NEXT_PUBLIC_WS_URL}?token=${encodeURIComponent(token)}`
+      `${process.env.NEXT_PUBLIC_WS_URL}?token=${encodeURIComponent(token)}`
     );
     socketRef.current = ws;
     ws.onopen = () => {
@@ -32,7 +32,7 @@ export default function Canvas() {
 
   // Fetch shapes
   const getShape = async () => {
-    const response = await axios.get(`${environment?.NEXT_PUBLIC_API_URL}/get-shapes`, {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-shapes`, {
       params: { room_name: roomName },
     });
     const data = Array.isArray(response?.data?.data) ? response.data?.data : [];
