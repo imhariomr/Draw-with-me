@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../shareable/navbar";
-import Card from "@/components/ui/card";
+import Card from "../../components/ui/card";
 // import { environment } from "environment";
 import BarLoader from "../shareable/bar-loader";
 
