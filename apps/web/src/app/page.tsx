@@ -20,7 +20,6 @@ export default function App() {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const canvasId = 1;
 
   useEffect(() => {
     setMounted(true); // avoid hydration mismatch

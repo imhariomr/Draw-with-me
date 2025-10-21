@@ -4,9 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -b",
+    "start": "node ./dist/index.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^6.33.1",
+    "@repo/db": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/express": "^5.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "prisma": "^6.12.0",
+    "ws": "^8.18.3",
+    "zod": "^4.0.5"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/ws": "^8.18.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
 }

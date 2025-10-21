@@ -11,6 +11,7 @@ CREATE TABLE "room" (
 -- CreateTable
 CREATE TABLE "shapes" (
     "id" SERIAL NOT NULL,
+    "shapeType" TEXT NOT NULL,
     "startOffSetX" INTEGER NOT NULL,
     "startOffSetY" INTEGER NOT NULL,
     "endOffSetX" INTEGER NOT NULL,

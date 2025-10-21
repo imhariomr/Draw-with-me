@@ -4,15 +4,22 @@ import axios from "axios";
 import Navbar from "../shareable/navbar";
 import Card from "@/components/ui/card";
 import { environment } from "environment";
+import BarLoader from "../shareable/bar-loader";
 
 export default function Dashboard() {
   const [roomdata, setRoomdata] = useState<any>([]);
-  const getRoomdata = async() =>{
-    const response = await axios.get(`${environment.NEXT_PUBLIC_API_URL}/getRooms`);
-    if(response){
-      setRoomdata(response?.data?.data);
+  const [loader, setLoader] = useState(false);
+  const getRoomdata = async () => {
+    try {
+      setLoader(true);
+      const response = await axios.get(`${environment.NEXT_PUBLIC_API_URL}/list/canvas`);
+      setRoomdata(response?.data?.data || []);
+    } catch (error) {
+      console.error("Error fetching rooms:", error);
+    } finally {
+      setLoader(false);
     }
-  }
+  };
   useEffect(()=>{
     getRoomdata();
   },[])
