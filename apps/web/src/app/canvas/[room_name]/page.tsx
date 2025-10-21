@@ -4,7 +4,7 @@ import { drawing } from "../../shareable/drawing";
 import ToolBar from "../../shareable/tool-bar";
 import { useAuth } from "@clerk/nextjs";
 import axios from "axios";
-import { environment } from '../../../../environment';
+import { environment } from "environment";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
