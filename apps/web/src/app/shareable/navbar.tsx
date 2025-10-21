@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "../../components/ui/button";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { PenTool } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -17,7 +17,7 @@ import { Description, DialogClose } from "@radix-ui/react-dialog";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { environment } from "environment";
-import { Textarea } from "@/components/ui/textarea";
+import { Textarea } from '../../components/ui/textarea';
 import { toast } from "sonner";
 import BarLoader from "./bar-loader";
 import { useState } from "react";
@@ -44,7 +44,7 @@ export default function Navbar() {
         name: data?.canvasName?.trim(),
         description: data?.description,
       };
-      const response = await axios.post(`${environment?.NEXT_PUBLIC_API_URL}/create-room`,payload);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/create-room`,payload);
       if (response) {
         setLoader(false);
         toast.success(response?.data?.message + ' 🥂');
