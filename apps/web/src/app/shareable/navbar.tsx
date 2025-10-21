@@ -16,7 +16,6 @@ import {
 import { Description, DialogClose } from "@radix-ui/react-dialog";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
-import { environment } from "environment";
 import { Textarea } from '../../components/ui/textarea';
 import { toast } from "sonner";
 import BarLoader from "./bar-loader";
