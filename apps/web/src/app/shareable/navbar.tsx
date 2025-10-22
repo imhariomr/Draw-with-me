@@ -20,6 +20,7 @@ import { Textarea } from '../../components/ui/textarea';
 import { toast } from "sonner";
 import BarLoader from "./bar-loader";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type FormValue = {
   canvasName: string;
@@ -27,6 +28,7 @@ type FormValue = {
 };
 
 export default function Navbar() {
+  const router = useRouter();
   const { theme, setTheme } = useTheme();
   const [loader, setLoader] = useState<boolean>(false);
   const {
@@ -46,6 +48,12 @@ export default function Navbar() {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/create-room`,payload);
       if (response) {
         setLoader(false);
+        console.log("window.location.pathname",window.location.pathname);
+        if (window.location.pathname === "/dashboard") {
+          router.refresh();
+        } else {
+          router.push("/dashboard");
+        }
         toast.success(response?.data?.message + ' 🥂');
       }
     } catch (err:any) {
