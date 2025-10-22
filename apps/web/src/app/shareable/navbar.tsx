@@ -151,10 +151,16 @@ export default function Navbar() {
                               message:
                                 "Canvas name must be at least 4 characters long",
                             },
-                            validate: (value)=>
-                              value.trim().length >= 4 || "Canvas name must be at least 4 characters long",
-                            }
-                          )}
+                            validate: (value) => {
+                              if (/\s/.test(value)) {
+                                return "Canvas name cannot contain spaces";
+                              }
+                              if (value.trim().length < 4) {
+                                return "Canvas name must be at least 4 characters long";
+                              }
+                              return true;
+                            },
+                          })}
                           className="w-full rounded-md border border-border px-3 py-2 bg-background focus:outline-none focus:ring-2 focus:ring-primary"
                         />
                         {errors.canvasName && (
@@ -180,8 +186,7 @@ export default function Navbar() {
                               message:
                                 "Description must be less than 100 words",
                             },
-                            }
-                          )}
+                          })}
                           className="w-full rounded-md border border-border px-3 py-2 bg-background focus:outline-none focus:ring-2 focus:ring-primary"
                         />
                         {errors.description && (
@@ -198,9 +203,9 @@ export default function Navbar() {
                           </Button>
                         </DialogClose>
                         <DialogClose asChild>
-                        <Button type="submit" disabled={!isValid}>
-                          Save changes
-                        </Button>
+                          <Button type="submit" disabled={!isValid}>
+                            Save changes
+                          </Button>
                         </DialogClose>
                       </DialogFooter>
                     </form>
