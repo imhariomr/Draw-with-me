@@ -5,7 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "./shareable/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
-import { useEffect, useState } from "react";
+import DeviceCheck from "@/components/ui/deviceCheck";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,32 +26,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isAllowedDevice, setIsAllowedDevice] = useState(true);
-
-  useEffect(() => {
-    const userAgent = navigator.userAgent.toLowerCase();
-
-    // Simple check for mobile or tablet devices
-    const isMobileOrTablet = /iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(
-      userAgent
-    );
-
-    setIsAllowedDevice(!isMobileOrTablet);
-  }, []);
-
-    if (!isAllowedDevice) {
-    return (
-      <html lang="en">
-        <body className="bg-black text-white flex items-center justify-center h-screen text-center p-5">
-          <div>
-            <h1 className="text-3xl font-bold mb-4">🚫 Access Restricted</h1>
-            <p className="text-lg">We are only accessible on Laptop or Desktop 💻</p>
-          </div>
-        </body>
-      </html>
-    );
-  }
-
   return (
     <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY} afterSignOutUrl={'/'}>
     <html lang="en">
@@ -63,7 +37,9 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <TooltipProvider>
+              <DeviceCheck>
             {children}
+            </DeviceCheck>
             <Toaster position="top-center"/>
             </TooltipProvider>
           </ThemeProvider>
