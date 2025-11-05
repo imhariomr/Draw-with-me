@@ -66,7 +66,7 @@ export default function Canvas() {
     <>
       <ToolBar selectedShape={selectedShape} setSelectedShape={setSelectedShape} />
       <div className="relative w-screen h-screen z-0">
-        <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full"></canvas>
+        <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle,_#4a4a4a_1px,_transparent_1px)] [background-size:24px_24px]"></canvas>
       </div>
     </>
   );
