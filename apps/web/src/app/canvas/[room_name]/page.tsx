@@ -40,6 +40,9 @@ export default function Canvas() {
   };
 
   useEffect(() => {
+    if (canvasRef.current) {
+      canvasRef.current.style.cursor = selectedShape === shapes.ERASER ? `url("/icons/eraser.png") 4 4, auto`: "crosshair";
+    }
     if (drawingRef.current) {
       drawingRef.current.selectedShape = selectedShape;
     }
@@ -64,6 +67,10 @@ export default function Canvas() {
 
   return (
     <>
+    {selectedShape === shapes.ERASER && (<p className="absolute top-2 left-1/2 -translate-x-1/2 z-50 px-3 py-1 text-sm text-gray-200 bg-[#1f1f1f]/80 backdrop-blur-md border border-white/10 rounded-md shadow-md">
+    Just Tap once on the shape and watch it disappear like it never exist 🎩✨
+    </p>
+  )}
       <ToolBar selectedShape={selectedShape} setSelectedShape={setSelectedShape} />
       <div className="relative w-screen h-screen z-0">
         <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle,_#4a4a4a_1px,_transparent_1px)] [background-size:24px_24px]"></canvas>
