@@ -35,70 +35,112 @@ export default function App() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 py-24 lg:py-40 text-center">
-          <h1 className="text-5xl lg:text-7xl font-extrabold leading-tight mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Sketch Anything. Anywhere. Together.
-          </h1>
-          <p className="text-lg lg:text-xl max-w-2xl mx-auto mb-10 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Reimagining collaboration — real-time drawing for teams, educators & creatives.
-          </p>
+  <div className="max-w-7xl mx-auto px-6 py-24 lg:py-40 text-center">
+    <h1 className="text-5xl lg:text-7xl font-extrabold leading-tight mb-6">
+      Sketch Anything. Anywhere. Together.
+    </h1>
+    
+    <p className="text-lg lg:text-xl max-w-2xl mx-auto mb-10">
+      Reimagining collaboration — real-time drawing for teams, educators & creatives.
+    </p>
 
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <SignedIn>
-              <button
-                onClick={handleRedirect}
-                className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-80 transition"
-              >
-                <span>Start Drawing</span>
-                <ArrowRight className="ml-2 inline-block" />
-              </button>
-            </SignedIn>
+    <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+      <SignedIn>
+        <button
+          onClick={handleRedirect}
+          className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-80 transition"
+        >
+          <span>Start Drawing</span>
+          <ArrowRight className="ml-2 inline-block" />
+        </button>
+      </SignedIn>
 
-            <SignedOut>
-              <SignInButton forceRedirectUrl="/">
-                <span className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-80 transition cursor-pointer">
-                  Start Drawing <ArrowRight className="ml-2 inline-block" />
-                </span>
-              </SignInButton>
-            </SignedOut>
+      <SignedOut>
+        <SignInButton forceRedirectUrl="/">
+          <span className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-80 transition cursor-pointer">
+            Start Drawing <ArrowRight className="ml-2 inline-block" />
+          </span>
+        </SignInButton>
+      </SignedOut>
 
-            <button className="border border-border px-8 py-4 rounded-xl font-semibold text-lg hover:bg-muted transition">
-              Watch Demo
-            </button>
-          </div>
-        </div>
-      </section>
+      <button className="border border-border px-8 py-4 rounded-xl font-semibold text-lg hover:bg-muted transition">
+        Watch Demo
+      </button>
+    </div>
+  </div>
+</section>
+
 
       {/* Features Section */}
       <section className="py-24 bg-muted">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-foreground">
-              Built to Power Visual Collaboration
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Feature-rich, blazing fast, and beautifully dark.
-            </p>
-          </div>
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl font-bold mb-4 text-foreground">
+        Built to Power Visual Collaboration
+      </h2>
+      <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        Feature-rich, blazing fast, and beautifully dark.
+      </p>
+    </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {[
-              { icon: <Users />, title: "Real-time Collaboration", desc: "Draw with your team live — no lag, just clarity." },
-              { icon: <Palette />, title: "Pro Drawing Tools", desc: "Smooth pens, sharp shapes, and pixel-perfect design." },
-              { icon: <Zap />, title: "Lightning Fast", desc: "Optimized for performance. Everything just flows." },
-              { icon: <Shield />, title: "Secure by Default", desc: "Encryption built-in. Share with confidence." },
-              { icon: <Share2 />, title: "Instant Sharing", desc: "One click. One link. Collaborate in seconds." },
-              { icon: <Download />, title: "Flexible Exports", desc: "Export as PNG, SVG or PDF — perfect for anything." },
-            ].map(({ icon, title, desc }) => (
-              <div key={title} className="bg-card border border-border rounded-2xl p-8 hover:shadow transition-all">
-                <div className="mb-4 text-foreground">{icon}</div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">{title}</h3>
-                <p className="text-muted-foreground text-sm">{desc}</p>
-              </div>
-            ))}
-          </div>
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[200px] md:auto-rows-[250px]">
+      {/* Item 1 - Large */}
+      <div className="md:col-span-2 bg-card border border-border rounded-2xl p-8 flex flex-col justify-between hover:shadow transition-all">
+        <div className="text-foreground text-3xl"><Users /></div>
+        <div>
+          <h3 className="text-2xl font-semibold mb-2">Real-time Collaboration</h3>
+          <p className="text-muted-foreground text-sm">Draw live with teammates — no lag.</p>
         </div>
-      </section>
+      </div>
+
+      {/* Item 2 */}
+      <div className="bg-card border border-border rounded-2xl p-8 flex flex-col justify-between hover:shadow transition-all">
+        <div className="text-foreground text-3xl"><Palette /></div>
+        <div>
+          <h3 className="text-xl font-semibold mb-2">Pro Drawing Tools</h3>
+          <p className="text-muted-foreground text-sm">Precision pens, shapes & more.</p>
+        </div>
+      </div>
+
+      {/* Item 3 */}
+      <div className="bg-card border border-border rounded-2xl p-8 flex flex-col justify-between hover:shadow transition-all">
+        <div className="text-foreground text-3xl"><Zap /></div>
+        <div>
+          <h3 className="text-xl font-semibold mb-2">Lightning Fast</h3>
+          <p className="text-muted-foreground text-sm">Optimized for instant response.</p>
+        </div>
+      </div>
+
+      {/* Item 4 - Tall */}
+      <div className="md:row-span-2 bg-card border border-border rounded-2xl p-8 flex flex-col justify-between hover:shadow transition-all">
+        <div className="text-foreground text-3xl"><Shield /></div>
+        <div>
+          <h3 className="text-2xl font-semibold mb-2">Secure by Default</h3>
+          <p className="text-muted-foreground text-sm">Encrypted and privacy focused.</p>
+        </div>
+      </div>
+
+      {/* Item 5 */}
+      <div className="bg-card border border-border rounded-2xl p-8 flex flex-col justify-between hover:shadow transition-all">
+        <div className="text-foreground text-3xl"><Share2 /></div>
+        <div>
+          <h3 className="text-xl font-semibold mb-2">Instant Sharing</h3>
+          <p className="text-muted-foreground text-sm">One link. Zero friction.</p>
+        </div>
+      </div>
+
+      {/* Item 6 */}
+      <div className="bg-card border border-border rounded-2xl p-8 flex flex-col justify-between hover:shadow transition-all">
+        <div className="text-foreground text-3xl"><Download /></div>
+        <div>
+          <h3 className="text-xl font-semibold mb-2">Flexible Exports</h3>
+          <p className="text-muted-foreground text-sm">PNG, SVG, or PDF — ready to ship.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Footer */}
       <footer className="bg-background border-t border-border">
