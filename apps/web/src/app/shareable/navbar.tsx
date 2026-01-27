@@ -166,7 +166,7 @@ export default function Navbar({ onAction }: NavbarProps) {
                             },
                           })}
                           className="w-full rounded-md border border-border px-3 py-2 bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                        />
+                        />  
                         {errors.canvasName && (
                           <p className="text-red-500 text-sm mt-1">
                             {errors.canvasName.message as string}
