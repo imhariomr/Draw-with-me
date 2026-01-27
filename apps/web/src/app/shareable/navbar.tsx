@@ -27,7 +27,11 @@ type FormValue = {
   description: string
 };
 
-export default function Navbar() {
+type NavbarProps = {
+  onAction?: () => void;
+};
+
+export default function Navbar({ onAction }: NavbarProps) {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
   const [loader, setLoader] = useState<boolean>(false);
@@ -48,12 +52,12 @@ export default function Navbar() {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/create-room`,payload);
       if (response) {
         setLoader(false);
-        console.log("window.location.pathname",window.location.pathname);
         if (window.location.pathname === "/dashboard") {
           router.refresh();
         } else {
           router.push("/dashboard");
         }
+        onAction?.();
         toast.success(response?.data?.message + ' 🥂');
       }
     } catch (err:any) {

@@ -23,9 +23,13 @@ export default function Dashboard() {
   useEffect(()=>{
     getRoomdata();
   },[])
+
+  const handleNavbarAction = () => {
+    getRoomdata();
+  };
   return (
     <>  
-      <Navbar />
+      <Navbar onAction={handleNavbarAction}/>
       <div className="w-screen min-h-screen bg-white dark:bg-black pt-12">
         <div className="grid gap-8 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-screen-xl mx-auto w-full">
           {roomdata.length > 0 ? (
