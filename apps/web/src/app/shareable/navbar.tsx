@@ -143,7 +143,7 @@ export default function Navbar({ onAction }: NavbarProps) {
                           htmlFor="canvasName"
                           className="block text-sm font-medium mb-1 text-foreground"
                         >
-                          Canvas Name
+                          Canvas Name<span>*</span>
                         </label>
                         <input
                           id="canvasName"
@@ -179,7 +179,7 @@ export default function Navbar({ onAction }: NavbarProps) {
                           htmlFor="description"
                           className="block text-sm font-medium mb-1 text-foreground"
                         >
-                          Description
+                          Description<span>*</span>
                         </label>
                         <Textarea
                           id="description"
